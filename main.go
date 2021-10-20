@@ -13,3 +13,7 @@ func port() string {
 	}
 	return ":" + defaultport
 }
+
+func main() {
+	
+}
