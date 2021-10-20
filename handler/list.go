@@ -22,3 +22,18 @@ func (h *handler) getTodoLists(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, lists)
 }
+
+func (h *handler) createTodo(c echo.Context) error {
+	var list List
+	err := c.Bind(&list)
+	if err != nil {
+		return err
+	}
+
+	err = h.DB.Create(&list).Error
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(http.StatusOK, list)
+}
