@@ -37,3 +37,15 @@ func (h *handler) createTodo(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, list)
 }
+
+func (h *handler) deleteTodo(c echo.Context) error {
+	var list List
+	paramID := c.Param("id")
+
+	err := h.DB.Where("id=?", paramID).Delete(&list).Error
+	if err != nil {
+		return err
+	}
+
+	return c.JSON(http.StatusOK, list)
+}
