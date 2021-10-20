@@ -11,3 +11,7 @@ import (
 type handler struct {
 	DB *gorm.DB
 }
+
+func (h *handler) health(c echo.Context) error {
+	return c.JSON(http.StatusOK, map[string]string{"message": "OK"})
+}
